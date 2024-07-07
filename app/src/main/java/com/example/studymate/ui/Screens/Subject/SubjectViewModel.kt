@@ -1,4 +1,4 @@
-package com.example.studymate.ui.ViewModels
+package com.example.studymate.ui.Screens.Subject
 
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.ui.graphics.Color
@@ -6,15 +6,12 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.studymate.ui.Events.SubjectEvent
 import com.example.studymate.ui.Models.Subject
 import com.example.studymate.ui.Models.Task
 import com.example.studymate.ui.Repository.interfaces.SessionRepository
 import com.example.studymate.ui.Repository.interfaces.SubjectRepository
 import com.example.studymate.ui.Repository.interfaces.TaskRepository
-import com.example.studymate.ui.Screens.SubjectScreenNavArgs
 import com.example.studymate.ui.Screens.navArgs
-import com.example.studymate.ui.StateValues.SubjectStates
 import com.example.studymate.ui.Util.SnackbarEvent
 import com.example.studymate.ui.Util.toHours
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -90,14 +87,21 @@ class SubjectViewModel @Inject constructor(
                 }
             }
 
-            is SubjectEvent.OnDeleteSessionButtonClick -> {}
+            is SubjectEvent.OnDeleteSessionButtonClick -> {
+                _state.update {
+                    it.copy(
+                        session = event.session
+                    )
+                }
+            }
+
             is SubjectEvent.OnTaskIsCompleteChange -> {
                 updateTask(event.task)
             }
 
             SubjectEvent.UpdateSubject -> updateSubject()
             SubjectEvent.DeleteSubject -> deleteSubject()
-            SubjectEvent.DeleteSession -> {}
+            SubjectEvent.DeleteSession -> deleteSession()
 
             SubjectEvent.UpdateProgress -> {
                 val goalStudyHours = state.value.goalStudyHours.toFloatOrNull() ?: 1f
@@ -110,6 +114,25 @@ class SubjectViewModel @Inject constructor(
         }
     }
 
+    private fun deleteSession() {
+        viewModelScope.launch {
+            try {
+                state.value.session?.let {
+                    sessionRepository.deleteSession(it)
+                    _snackbarEventFlow.emit(
+                        SnackbarEvent.ShowSnackbar(message = "Session deleted successfully")
+                    )
+                }
+            } catch (e: Exception) {
+                _snackbarEventFlow.emit(
+                    SnackbarEvent.ShowSnackbar(
+                        message = "Couldn't delete session. ${e.message}",
+                        duration = SnackbarDuration.Long
+                    )
+                )
+            }
+        }
+    }
 
     private fun fetchSubject() {
         viewModelScope.launch {

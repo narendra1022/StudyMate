@@ -1,17 +1,15 @@
-package com.example.studymate.ui.ViewModels
+package com.example.studymate.ui.Screens.DashBoard
 
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.ui.graphics.toArgb
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.studymate.ui.Events.DashboardEvent
 import com.example.studymate.ui.Models.Session
 import com.example.studymate.ui.Models.Subject
 import com.example.studymate.ui.Models.Task
 import com.example.studymate.ui.Repository.interfaces.SessionRepository
 import com.example.studymate.ui.Repository.interfaces.SubjectRepository
 import com.example.studymate.ui.Repository.interfaces.TaskRepository
-import com.example.studymate.ui.StateValues.DashBoardState
 import com.example.studymate.ui.Util.SnackbarEvent
 import com.example.studymate.ui.Util.toHours
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -101,9 +99,29 @@ class DashBoardViewModel @Inject constructor(
             }
 
             DashboardEvent.SaveSubject -> saveSubject()
-            DashboardEvent.DeleteSession -> {}
+            DashboardEvent.DeleteSession -> deleteSession()
             is DashboardEvent.OnTaskIsCompleteChange -> {
                 updateTask(event.task)
+            }
+        }
+    }
+
+    private fun deleteSession() {
+        viewModelScope.launch {
+            try {
+                state.value.session?.let {
+                    sessionRepository.deleteSession(it)
+                    _snackbarEventFlow.emit(
+                        SnackbarEvent.ShowSnackbar(message = "Session deleted successfully")
+                    )
+                }
+            } catch (e: Exception) {
+                _snackbarEventFlow.emit(
+                    SnackbarEvent.ShowSnackbar(
+                        message = "Couldn't delete session. ${e.message}",
+                        duration = SnackbarDuration.Long
+                    )
+                )
             }
         }
     }

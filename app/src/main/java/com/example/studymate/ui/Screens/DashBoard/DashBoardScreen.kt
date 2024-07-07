@@ -1,4 +1,4 @@
-package com.example.studymate.ui.Screens
+package com.example.studymate.ui.Screens.DashBoard
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -49,16 +49,15 @@ import com.example.studymate.ui.Components.DeleteDialog
 import com.example.studymate.ui.Components.SubjectCard
 import com.example.studymate.ui.Components.studySessionsList
 import com.example.studymate.ui.Components.tasksList
-import com.example.studymate.ui.Events.DashboardEvent
 import com.example.studymate.ui.Models.Session
 import com.example.studymate.ui.Models.Subject
 import com.example.studymate.ui.Models.Task
+import com.example.studymate.ui.Screens.Subject.SubjectScreenNavArgs
+import com.example.studymate.ui.Screens.Task.TaskScreenNavArgs
 import com.example.studymate.ui.Screens.destinations.SessionScreenRouteDestination
 import com.example.studymate.ui.Screens.destinations.SubjectScreenRouteDestination
 import com.example.studymate.ui.Screens.destinations.TaskScreenRouteDestination
-import com.example.studymate.ui.StateValues.DashBoardState
 import com.example.studymate.ui.Util.SnackbarEvent
-import com.example.studymate.ui.ViewModels.DashBoardViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator

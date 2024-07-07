@@ -26,7 +26,7 @@ fun TaskCheckBox(
         modifier = Modifier
             .size(25.dp)
             .border(2.dp, boarderColor, CircleShape)
-            .clickable { onBoxClick },
+            .clickable { onBoxClick() },
         contentAlignment = androidx.compose.ui.Alignment.Center
     ) {
         AnimatedVisibility(visible = isComplete) {
@@ -37,10 +37,4 @@ fun TaskCheckBox(
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun taskcheckbox(modifier: Modifier = Modifier) {
-//    TaskCheckBox()
 }

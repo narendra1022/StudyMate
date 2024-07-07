@@ -28,6 +28,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.studymate.R
 import com.example.studymate.ui.Models.Session
+import com.example.studymate.ui.Util.changeMillisToDateString
+import com.example.studymate.ui.Util.toHours
 
 
 fun LazyListScope.studySessionsList(
@@ -109,13 +111,13 @@ fun SessionCard(
                     maxLines = 1,
                 )
                 Text(
-                    text = session.date.toString(),
+                    text = session.date.changeMillisToDateString(),
                     style = MaterialTheme.typography.bodySmall
                 )
             }
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = session.duration.toString(),
+                text = session.duration.toHours().toString(),
                 style = MaterialTheme.typography.titleMedium
             )
 

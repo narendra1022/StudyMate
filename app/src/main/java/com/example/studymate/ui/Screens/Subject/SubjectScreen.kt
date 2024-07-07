@@ -1,4 +1,4 @@
-package com.example.studymate.ui.Screens
+package com.example.studymate.ui.Screens.Subject
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -46,11 +46,9 @@ import com.example.studymate.ui.Components.AlertDialogBoxForAddingSubjects
 import com.example.studymate.ui.Components.DeleteDialog
 import com.example.studymate.ui.Components.studySessionsList
 import com.example.studymate.ui.Components.tasksList
-import com.example.studymate.ui.Events.SubjectEvent
+import com.example.studymate.ui.Screens.Task.TaskScreenNavArgs
 import com.example.studymate.ui.Screens.destinations.TaskScreenRouteDestination
-import com.example.studymate.ui.StateValues.SubjectStates
 import com.example.studymate.ui.Util.SnackbarEvent
-import com.example.studymate.ui.ViewModels.SubjectViewModel
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.SharedFlow
@@ -160,7 +158,7 @@ private fun SubjectScreen(
                 "by this session time. This action can not be undone.",
         onDismissListener = { isDeleteSubjectDialogOpen = false },
         onConfirmListener = {
-            onEvent(SubjectEvent.DeleteSession)
+            onEvent(SubjectEvent.DeleteSubject)
             isDeleteSubjectDialogOpen = false
 
         }

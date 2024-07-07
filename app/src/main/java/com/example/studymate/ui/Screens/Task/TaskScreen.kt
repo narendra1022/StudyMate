@@ -1,4 +1,4 @@
-package com.example.studymate.ui.Screens
+package com.example.studymate.ui.Screens.Task
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -44,18 +44,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.studymate.subList
 import com.example.studymate.ui.Components.DeleteDialog
 import com.example.studymate.ui.Components.SubjectListBottomSheet
 import com.example.studymate.ui.Components.TaskCheckBox
 import com.example.studymate.ui.Components.taskDatePicker
-import com.example.studymate.ui.Events.TaskEvent
-import com.example.studymate.ui.StateValues.TaskState
 import com.example.studymate.ui.Util.Priority
 import com.example.studymate.ui.Util.SnackbarEvent
 import com.example.studymate.ui.Util.changeMillisToDateString
-import com.example.studymate.ui.ViewModels.TaskScreenViewModel
-import com.example.studymate.ui.theme.Red
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlinx.coroutines.flow.SharedFlow
@@ -145,9 +140,7 @@ private fun TaskScreen(
     }
     taskDescriptionError = when {
         state.description.isBlank() -> "Please enter description."
-        state.description.toFloatOrNull() == null -> "Invalid number."
-        state.description.toFloat() < 1f -> "Please set at least 1 hour."
-        state.description.toFloat() > 1000f -> "Please set a maximum of 1000 hours."
+        state.description.length < 5 -> "Description is too short."
         else -> null
     }
 

@@ -1,4 +1,4 @@
-package com.example.studymate.ui.Events
+package com.example.studymate.ui.Screens.Subject
 
 import androidx.compose.ui.graphics.Color
 import com.example.studymate.ui.Models.Session
