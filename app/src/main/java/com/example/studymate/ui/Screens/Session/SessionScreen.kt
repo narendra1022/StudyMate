@@ -285,7 +285,7 @@ private fun SessionScreen(
             studySessionsList(
                 "STUDY SESSIONS HISTORY",
                 sessions = state.sessions,
-                emptySessionText = "You don't have any Session . \nYou have completed all tasks",
+                emptySessionText = "You don't have any Study Session History.",
                 onDeleteIcon = { session ->
                     onEvent(SessionEvent.OnDeleteSessionButtonClick(session))
                     isDeleteSessionDialogOpen = true

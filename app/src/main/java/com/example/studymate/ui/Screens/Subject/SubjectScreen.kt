@@ -239,7 +239,7 @@ private fun SubjectScreen(
             studySessionsList(
                 "RECENT STUDY SESSIONS",
                 sessions = state.recentSessions,
-                emptySessionText = "You don't have any Session . \nYou have completed all tasks",
+                emptySessionText = "You don't have any Recent Study Sessions.",
                 onDeleteIcon = {
                     onEvent(SubjectEvent.OnDeleteSessionButtonClick(it))
                     isDeleteSessionDialogOpen = true

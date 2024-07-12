@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.studymate"
-        minSdk = 21
+        minSdk =21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -70,31 +70,34 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.androidx.lifecycle.runtime.compose)
 
+    //splashScreen
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
     //compose destination
     val destinationVersion = "1.9.52"
-    implementation("io.github.raamcosta.compose-destinations:core:$destinationVersion")
-    ksp("io.github.raamcosta.compose-destinations:ksp:$destinationVersion")
+    implementation(libs.core)
+    ksp(libs.ksp)
 
     // Room
     val roomVersion = "2.5.2"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    ksp("androidx.room:room-compiler:$roomVersion")
-    implementation("androidx.room:room-ktx:$roomVersion")
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     //Dagger-Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    ksp("com.google.dagger:hilt-android-compiler:2.48")
-    ksp("androidx.hilt:hilt-compiler:1.0.0")
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    ksp(libs.androidx.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     //fonts
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.5.3")
+    implementation(libs.androidx.ui.text.google.fonts)
 
     //Desugaring
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
-
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
 }

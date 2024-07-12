@@ -52,20 +52,21 @@ fun LazyListScope.studySessionsList(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Image(
-                    modifier = Modifier
-                        .size(100.dp)
-                        .padding(top = 10.dp),
-                    painter = painterResource(id = R.drawable.lamp),
-                    contentDescription = "Books Image"
-                )
-                Spacer(modifier = Modifier.height(5.dp))
+//                Image(
+//                    modifier = Modifier
+//                        .size(100.dp)
+//                        .padding(top = 10.dp),
+//                    painter = painterResource(id = R.drawable.lamp),
+//                    contentDescription = "Lamp Image"
+//                )
+                Spacer(modifier = Modifier.height(15.dp))
                 Text(
                     text = emptySessionText,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
                     color = Color.Gray
                 )
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     } else {

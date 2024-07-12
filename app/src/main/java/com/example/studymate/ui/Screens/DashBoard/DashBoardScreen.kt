@@ -220,7 +220,7 @@ private fun DashBoardScreen(
             studySessionsList(
                 "RECENT STUDY SESSIONS",
                 sessions = recentSessions,
-                emptySessionText = "You don't have any Session . \nYou have completed all tasks",
+                emptySessionText = "You don't have any Recent Study Sessions.",
                 onDeleteIcon = {
                     onEvent(DashboardEvent.OnDeleteSessionButtonClick(it))
                     isDeleteSessionDialogOpen = true
@@ -280,7 +280,7 @@ fun SubjectCardSection(
                 painter = painterResource(id = R.drawable.books),
                 contentDescription = "Books Image"
             )
-            Spacer(modifier = Modifier.height(5.dp))
+            Spacer(modifier = Modifier.height(15.dp))
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "You don't have any subjects to read . \nPlease add by clicking + on top right",
@@ -288,6 +288,7 @@ fun SubjectCardSection(
                 textAlign = TextAlign.Center,
                 color = Color.Gray
             )
+            Spacer(modifier = Modifier.height(15.dp))
         } else {
             LazyRow(
                 modifier = Modifier

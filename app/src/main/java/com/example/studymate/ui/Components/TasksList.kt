@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.example.studymate.R
 import com.example.studymate.ui.Models.Task
 import com.example.studymate.ui.Util.Priority
+import com.example.studymate.ui.Util.changeMillisToDateString
 
 fun LazyListScope.tasksList(
     sectionTitle: String,
@@ -50,20 +52,22 @@ fun LazyListScope.tasksList(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
+                Spacer(modifier = Modifier.height(25.dp))
                 Image(
                     modifier = Modifier
                         .size(100.dp)
                         .padding(top = 10.dp),
                     painter = painterResource(id = R.drawable.taksks),
-                    contentDescription = "Books Image"
+                    contentDescription = "Tasks Image"
                 )
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(25.dp))
                 Text(
                     text = emptyTaskText,
                     style = MaterialTheme.typography.bodySmall,
                     textAlign = TextAlign.Center,
                     color = Color.Gray
                 )
+                Spacer(modifier = Modifier.height(25.dp))
             }
         }
     } else {
@@ -85,21 +89,22 @@ fun TaskCard(
     onBoxClick: () -> Unit,
     onClick: () -> Unit
 ) {
-    ElevatedCard(
-
+    Card(
         modifier = modifier
             .fillMaxWidth()
             .clickable { onClick() }
-            .padding(10.dp),
+            .padding(horizontal = 15.dp, vertical = 10.dp),
     ) {
 
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+                .padding(horizontal = 10.dp, vertical = 15.dp),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically
         ) {
+
+            Spacer(modifier = Modifier.width(5.dp))
 
             TaskCheckBox(
                 isComplete = task.isComplete,
@@ -123,7 +128,7 @@ fun TaskCard(
                     textDecoration = if (task.isComplete) TextDecoration.LineThrough else TextDecoration.None
                 )
                 Text(
-                    text = task.dueDate.toString(),
+                    text = task.dueDate.changeMillisToDateString(),
                     style = MaterialTheme.typography.bodySmall
                 )
 
